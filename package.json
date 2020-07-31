@@ -12,10 +12,11 @@
         "start:electron": "electron .",
         "build": "npm-run-all build:electron build:react",
         "build:run": "npm-run-all build start:electron",
-        "build:electron": "webpack --config webpack/electron.webpack.js",
-        "build:react": "webpack --config webpack/react.webpack.js",
+        "build:electron": "webpack --config webpack/electron.webpack.js --mode production",
+        "build:react": "webpack --config webpack/react.webpack.js --mode production",
         "package": "npm-run-all build package:dist",
         "package:dist": "electron-builder --dir",
+        "pack": "electron-builder --x64",
         "test": "jest"
     },
     "keywords": [],
@@ -31,20 +32,25 @@
         "@commitlint/core": "^9.0.1",
         "@testing-library/jest-dom": "^5.11.0",
         "@testing-library/react": "^10.4.3",
+        "@types/dom-to-image": "^2.6.1",
         "@types/electron-devtools-installer": "^2.2.0",
         "@types/jest": "^26.0.3",
+        "@types/qrcode": "^1.3.4",
         "@types/react": "^16.9.34",
         "@types/react-dom": "^16.9.6",
-        "@types/styled-components": "^5.1.1",
         "@typescript-eslint/eslint-plugin": "^3.4.0",
         "@typescript-eslint/parser": "^3.4.0",
         "babel-loader": "^8.1.0",
+        "babel-plugin-import": "^1.13.0",
+        "babel-plugin-transform-class-properties": "^6.24.1",
         "commitizen": "^4.1.2",
         "cross-env": "^7.0.2",
+        "css-loader": "^3.6.0",
         "cz-conventional-changelog": "3.2.0",
-        "electron": "^9.1.0",
+        "electron": "^9.1.1",
         "electron-builder": "^22.7.0",
         "electron-devtools-installer": "^3.1.0",
+        "electron-rebuild": "^1.11.0",
         "eslint": "^7.3.1",
         "eslint-config-prettier": "^6.11.0",
         "eslint-config-standard": "^14.1.1",
@@ -62,6 +68,7 @@
         "nodemon": "^2.0.4",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.0.5",
+        "style-loader": "^1.2.1",
         "ts-jest": "^26.1.1",
         "typescript": "^3.9.5",
         "wait-on": "^5.0.1",
@@ -71,12 +78,14 @@
         "webpack-node-externals": "^2.5.0"
     },
     "dependencies": {
+        "@types/node-schedule": "^1.3.0",
         "antd": "^4.4.2",
-        "dotenv": "^8.2.0",
-        "electron-rebuild": "^1.11.0",
+        "dom-to-image": "^2.6.0",
+        "electron-store": "^6.0.0",
+        "node-schedule": "^1.3.2",
+        "qrcode": "^1.4.4",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "styled-components": "^5.1.1",
         "wechaty": "^0.40.10",
         "wechaty-puppet-padplus": "^0.6.3"
     },
@@ -91,7 +100,29 @@
         "files": [
             "package.json",
             "dist/**"
-        ]
+        ],
+        "win": {
+            "icon": "./public/favicon.ico",
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ]
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowElevation": true,
+            "allowToChangeInstallationDirectory": true,
+            "installerIcon": "./public/favicon.ico",
+            "uninstallerIcon": "./public/favicon.ico",
+            "installerHeaderIcon": "./public/favicon.ico",
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "shortcutName": "shortcut"
+        }
     },
     "config": {
         "commitizen": {
