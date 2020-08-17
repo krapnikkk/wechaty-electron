@@ -1,5 +1,8 @@
-## Electron + TypeScript + React
-Boilerplate for a project using Electron, React and Typescript
+# wechaty-electron
+[![Powered by Wechaty](https://img.shields.io/badge/Powered%20By-Wechaty-green.svg)](https://github.com/chatie/wechaty)
+[![Wechaty开源激励计划](https://img.shields.io/badge/Wechaty-开源激励计划-green.svg)](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)
+
+以微信机器人的形式，关注并推送甩甩尾巴闲置物品的图文信息服务~
 
 ## Installation
 
